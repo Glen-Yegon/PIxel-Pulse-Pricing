@@ -1,0 +1,291 @@
+/* =========  Base / Reset  ========= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  overflow-x: hidden;
+}
+
+/* ===== Navbar Styles ===== */
+.top-navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to right, #000, #ba0400, black);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.nav-brand {
+  font-family: 'Raleway', sans-serif;
+  font-size: 3.25rem;
+  font-weight: 100;
+  letter-spacing: 0.8px;
+  text-decoration: none;
+  color: #fff3f3;
+  background-color: #000;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* Adjust for center alignment */
+.top-navbar > div:first-child,
+.top-navbar > div:last-child {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .nav-brand {
+    font-size: 1.55rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nav-title {
+    font-size: 1.1rem;
+  }
+  .simple-navbar {
+    padding: 0 0.8rem;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* =========  Background Image  ========= */
+#bgImage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/red.png') center center / cover no-repeat;
+
+  z-index: -1;
+}
+
+
+/* =========  Hero  ========= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  height: 100vh;
+}
+
+/* make brand, tagline, and button stack nicely */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;            /* space between the three items */
+}
+
+/* big, black, responsive brand */
+.brand {
+  font-family: 'Raleway', sans-serif;
+ font-size: clamp(3.8rem, 14vw, 15rem);
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: #ba0400;
+}
+
+.tagline {
+  font-size: clamp(1rem, 5.5vw, 1.3rem);
+  color: rgb(255, 255, 255);
+}
+
+
+
+.cta-btn {
+  margin-top: 0px;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 3px solid #ba0400;
+  border-radius: 10px;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Hide‑until‑revealed utility ====================== */
+.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .6s ease;   /* nice fade‑in later */
+}
+
+/* When .hidden is removed the section fades in */
+.pricing{
+  transition:opacity .6s ease;
+}
+
+
+/* ===== Overlay ===== */
+#pageOverlay{
+  position:fixed;
+  inset:0;                       /* shorthand: top+right+bottom+left 0 */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,.15);   /* glassy tint */
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  z-index:9999;
+  pointer-events:none;           /* clicks flow through when hidden */
+  transform:translateY(-100%);   /* start off‑screen above */
+  transition:transform .8s cubic-bezier(.55,.1,.45,1), /* ease‑in‑out */
+             opacity   .4s linear;
+  opacity:0;                     /* also fade for polish */
+}
+
+/* Logo in the middle */
+.overlay-logo{
+  width:min(28vmin,160px);
+  height:auto;
+  object-fit:contain;
+  border-radius: 60px;
+}
+
+/* Overlay visible state (added by JS) */
+#pageOverlay.active{
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Overlay exit animation */
+#pageOverlay.exit{
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .7s cubic-bezier(.55,.1,.45,1) .2s, /* slight delay */
+             opacity   .4s linear;
+}
+
+
+/* ===== Footer component ================================= */
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  background: linear-gradient(to bottom, #ba0400, black);
+  color:#f1f1f1;
+  padding:4rem 1.5rem 3rem;
+  text-align:center;
+  isolation:isolate;                    /* so blur stays inside */
+}
+.site-footer::before{                   /* subtle glass overlay */
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(10px) saturate(160%);
+  -webkit-backdrop-filter:blur(10px) saturate(160%);
+  z-index:-1;
+}
+
+/* Brand word */
+.footer-brand{
+  font-family: 'Raleway', sans-serif;
+  font-size:clamp(2.5rem, 12vw,4.5rem);
+  font-weight:100;
+  letter-spacing:2px;
+  background: #030302;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:1.2rem;
+  text-transform:uppercase;
+}
+
+/* Descriptive text */
+.footer-text{
+  max-width:48ch;
+  margin:0 auto 1.6rem;
+  font-size:0.95rem;
+  line-height:1.6;
+  color:#d2d2d2;
+}
+
+/* Copyright & links */
+copyright,
+.footer-text,
+.footer-social a{
+  text-decoration:none;
+}
+.copyright{
+  font-size:0.8rem;
+  color:#9b9b9b;
+}
+.copyright a{
+  color:inherit;
+  text-decoration:underline;
+}
+.copyright a:hover{color:#fff;}
+
+/* ===== Responsive tweaks ================================ */
+@media (min-width:640px){
+  .footer-text{font-size:1rem;}
+}
+@media (min-width:960px){
+  .site-footer{
+    text-align:left;
+    padding:5rem 4rem 3.5rem;
+  }
+  .footer-inner{
+    display:grid;
+    grid-template-areas:
+      "brand socials"
+      "text  socials"
+      "copy  copy";
+    grid-template-columns:1fr auto;
+    column-gap:3rem;
+    align-items:center;
+  }
+  .footer-brand   {grid-area:brand; margin:0;}
+  .footer-social  {grid-area:socials; justify-content:flex-end; margin:0;}
+  .footer-text    {grid-area:text; margin:1rem 0 0;}
+  .copyright      {grid-area:copy; margin-top:2rem;}
+}
+/* ----- Full‑width line in footer ----- */
+.footer-divider{
+  display:block;
+  width:100%;
+  height:2px;                  /* thickness */
+  margin:2.5rem 0 2rem;        /* top / bottom spacing */
+  background:linear-gradient(
+      to right,
+      transparent 0%,
+      #ffffff70 50%,
+      transparent 100%);
+  border:none;
+  opacity:.9;
+  pointer-events:none;         /* keeps it non‑interactive */
+}
+
+/* Optional: slightly thicker on wide screens */
+@media (min-width:960px){
+  .footer-divider{
+    height:3px;
+    margin:3rem 0 2.5rem;
+  }
+}

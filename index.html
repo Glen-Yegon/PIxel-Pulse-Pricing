@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Pulse | Web Design Packages</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+   <!-- put this in <head> just after your Poppins import -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+<!-- OPTION A – quick CDN link (no account needed) -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer" />
+
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+  <!-- AOS (Animate On Scroll) core -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  /* Global AOS settings */
+  window.addEventListener('DOMContentLoaded', () => {
+    AOS.init({
+      duration: 1500,          // slow & smooth (1.2 s)
+      easing: 'ease-out-cubic',
+      once: true               // animate only on first scroll‑in
+    });
+  });
+</script>
+
+
+</head>
+<body>
+
+
+<!-- ===== Navbar ===== -->
+<header class="top-navbar">
+  <div></div> <!-- Empty div for spacing -->
+  <a href="home.html" class="nav-brand">Pixel Pulse</a>
+  <div></div> <!-- Empty div for symmetry -->
+</header>
+
+
+<!-- Background Image -->
+<div id="bgImage"></div>
+
+
+
+<section class="hero " id="hero">
+  <div class="hero-content">
+    <h1 class="brand"
+        data-aos="fade-down"
+        data-aos-delay="2000">Pixel Pulse</h1>
+
+    <p class="tagline"
+       data-aos="fade-down"
+       data-aos-delay="1500">Your Next Website Starts Here! Explore Tailored, High‑Quality Pricing Options</p>
+
+    <button id="accessBtn"
+            class="cta-btn"
+            data-aos="fade-down"
+            data-aos-delay="1000">Access Our Services →</button>
+  </div>
+</section>
+
+<!-- Page‑load / navigation overlay -->
+<div id="pageOverlay" aria-hidden="true">
+  <img class="overlay-logo" src="images/logo.png" alt="Company logo" />
+</div>
+
+
+
+
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+
+    <!-- Tagline / extra text -->
+    <p class="footer-text">
+      Crafting pixel‑perfect websites & bold brand identities for visionary entrepreneurs.
+    </p>
+
+    <!-- Copyright -->
+    <small class="copyright">
+      © 2025 Pixel Pulse. All rights reserved. | <a href="/privacy">Privacy&nbsp;Policy</a>
+    </small>
+  </div>
+  
+  <span class="footer-divider" aria-hidden="true"></span>
+      <!-- Big brand word -->
+    <h1 class="footer-brand" aria-label="Pixel Pulse">Pixel Pulse</h1>
+</footer>
+
+
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click',()=>{
+    document.body.classList.toggle('nav-open');
+  });
+</script>
+
+
+<script>
+(function () {
+  /* ---------- 1. Grab elements ---------- */
+  const overlay   = document.getElementById('pageOverlay');
+  const accessBtn = document.getElementById('accessBtn');   // hero button
+  const brandLink = document.querySelector('.nav-brand');   // <a>Pixel Pulse</a>
+
+  if (!overlay) return;   // stop if overlay not found
+
+  /* ---------- 2. Generic nav‑with‑overlay ---------- */
+  function goWithOverlay(url){
+    overlay.classList.remove('exit');
+    overlay.classList.add('active');
+
+    /* overlay slide‑in = 0.8 s, then keep it in view
+       another 1.2 s → total 2 s before redirect */
+    setTimeout(()=>{ window.location.href = url; }, 2000);
+  }
+
+  /* ---------- 3. Wire up the triggers ---------- */
+  accessBtn?.addEventListener('click', e=>{
+    e.preventDefault();
+    goWithOverlay('home.html');
+  });
+
+  brandLink?.addEventListener('click', e=>{
+    e.preventDefault();
+    goWithOverlay('home.html');
+  });
+})();
+</script>
+
+
+
+
+  <script src="scripts.js" type="module"></script>
+
+</body>
+</html>
+
