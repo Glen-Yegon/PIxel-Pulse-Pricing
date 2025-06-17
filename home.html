@@ -15,6 +15,8 @@
       <!-- Google Fonts: Poppins + Merriweather -->
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<link rel="preload" as="video" href="images/white bg 2.mp4" type="video/mp4">
+
   <!-- External stylesheet -->
   <link rel="stylesheet" href="home.css" />
 </head>
@@ -29,7 +31,7 @@
 </header>
 
       <!-- Background Video -->
-  <video id="bgVideo" autoplay muted loop playsinline>
+  <video id="bgVideo" autoplay muted loop playsinline preload="auto" >
     <source src="images/white bg 2.mp4" type="video/mp4" />
     <!-- Add a web‑optimised poster if desired -->
   </video>
@@ -82,7 +84,7 @@
             <li>6–12 Month Dedicated Support</li>
           </ul>
           <p class="price">KES 110,000 +</p>
-          
+
           <a href="#contact" class="btn">Contact Us</a>
         </article>
 
