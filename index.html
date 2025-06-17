@@ -113,28 +113,35 @@
 (function () {
   /* ---------- 1. Grab elements ---------- */
   const overlay   = document.getElementById('pageOverlay');
-  const accessBtn = document.getElementById('accessBtn');   // hero button
-  const brandLink = document.querySelector('.nav-brand');   // <a>Pixel Pulse</a>
+  const accessBtn = document.getElementById('accessBtn');     // hero button
+  const brandLink = document.querySelector('.nav-brand');     // <a>Pixel Pulse</a>
 
   if (!overlay) return;   // stop if overlay not found
 
-  /* ---------- 2. Generic nav‑with‑overlay ---------- */
-  function goWithOverlay(url){
-    overlay.classList.remove('exit');
-    overlay.classList.add('active');
+  /* ---------- 2. Always hide overlay when (re)entering this page ---------- */
+  // Fired on normal page load AND when the page is restored from the back/forward cache
+  window.addEventListener('pageshow', () => {
+    overlay.classList.remove('active'); // cancel any “covering” state
+    overlay.classList.add('exit');      // ensure it’s fully slid away
+  });
+
+  /* ---------- 3. Generic nav‑with‑overlay ---------- */
+  function goWithOverlay(url) {
+    overlay.classList.remove('exit');   // reset starting position
+    overlay.classList.add('active');    // slide down & cover
 
     /* overlay slide‑in = 0.8 s, then keep it in view
        another 1.2 s → total 2 s before redirect */
-    setTimeout(()=>{ window.location.href = url; }, 2000);
+    setTimeout(() => { window.location.href = url; }, 2000);
   }
 
-  /* ---------- 3. Wire up the triggers ---------- */
-  accessBtn?.addEventListener('click', e=>{
+  /* ---------- 4. Wire up the triggers ---------- */
+  accessBtn?.addEventListener('click', e => {
     e.preventDefault();
     goWithOverlay('home.html');
   });
 
-  brandLink?.addEventListener('click', e=>{
+  brandLink?.addEventListener('click', e => {
     e.preventDefault();
     goWithOverlay('home.html');
   });
